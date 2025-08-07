@@ -1,0 +1,15 @@
+# Dataset files
+data/
+*.tar.gz
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# MacOS
+.DS_Store
+
+# Claude settings
+.claude/
