@@ -1,24 +1,25 @@
 # Vision Transformer (ViT) Implementation for CIFAR-10
 
-## 프로젝트 개요
-Vision Transformer(ViT)를 처음부터 구현하여 CIFAR-10 데이터셋에서 이미지 분류를 수행하는 프로젝트
+## Project Overview
 
-## 주요 구성 요소
+Vision Transformer (ViT) implementation from scratch for image classification on CIFAR-10 dataset
+
+## Key Components
 
 ### 1. Patch Projection
-- 이미지를 패치로 분할
-- Conv2d를 사용한 linear projection
-- 입력: (batch, 3, 224, 224) → 출력: (batch, 196, 768)
+- Split images into patches
+- Linear projection using Conv2d
+- Input: (batch, 3, 224, 224) → Output: (batch, 196, 768)
 
 ### 2. Patch Embedding
-- CLS 토큰 추가
-- Positional encoding 적용
-- 입력: (batch, 3, 224, 224) → 출력: (batch, 197, 768)
+- Add CLS token
+- Apply positional encoding
+- Input: (batch, 3, 224, 224) → Output: (batch, 197, 768)
 
 ### 3. Multi-Head Attention (MHA)
-- 12개의 attention heads
+- 12 attention heads
 - Scaled dot-product attention
-- QKV projection 및 output projection
+- QKV projection and output projection
 
 ### 4. Transformer Encoder Block
 - Pre-normalization with LayerNorm
@@ -26,17 +27,17 @@ Vision Transformer(ViT)를 처음부터 구현하여 CIFAR-10 데이터셋에서
 - MLP (4x hidden dimension) + Residual connection
 
 ### 5. Vision Transformer
-- 12개의 Transformer blocks
+- 12 Transformer blocks
 - Classification head with CLS token
 
-## 학습 결과
+## Training Results
 
-### 성능
-- **최종 테스트 정확도**: 69.08%
-- **학습 시간**: 약 2.5시간 (30 epochs, MPS)
-- **모델 크기**: 4.77M parameters
+### Performance
+- **Final Test Accuracy**: 69.08%
+- **Training Time**: ~2.5 hours (30 epochs, MPS)
+- **Model Size**: 4.77M parameters
 
-### 학습 설정
+### Training Configuration
 ```python
 - Optimizer: AdamW (lr=5e-4, weight_decay=0.03)
 - Scheduler: Cosine annealing with warmup
@@ -44,10 +45,11 @@ Vision Transformer(ViT)를 처음부터 구현하여 CIFAR-10 데이터셋에서
 - Label smoothing: 0.1
 ```
 
-## 예측 결과
+## Prediction Results
+
 ![ViT Predictions](vit_predictions.png)
 
-## 모델 구성 비교
+## Model Configuration Comparison
 
 | Configuration | Embedding Size | Depth | Heads | Parameters |
 |--------------|---------------|-------|--------|------------|
@@ -56,12 +58,14 @@ Vision Transformer(ViT)를 처음부터 구현하여 CIFAR-10 데이터셋에서
 | ViT-Base     | 768          | 12    | 12     | 86.5M      |
 | ViT-Large    | 1024         | 24    | 16     | 304M       |
 
-## CIFAR-10 적용 변경사항
-- 이미지 크기: 32x32 (원본 224x224 대신)
-- 패치 크기: 4x4 (원본 16x16 대신)
-- 총 패치 수: 64개
+## CIFAR-10 Adaptations
 
-## 참고 자료
-- [An Image is Worth 16x16 Words (논문)](https://arxiv.org/abs/2010.11929)
+- Image size: 32x32 (instead of original 224x224)
+- Patch size: 4x4 (instead of original 16x16)
+- Total patches: 64
+
+## References
+
+- [An Image is Worth 16x16 Words (Paper)](https://arxiv.org/abs/2010.11929)
 - [Vision Transformer (Google Research)](https://github.com/google-research/vision_transformer)
 - [CIFAR-10 Dataset](https://www.cs.toronto.edu/~kriz/cifar.html)
